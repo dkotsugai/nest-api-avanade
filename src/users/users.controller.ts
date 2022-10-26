@@ -1,8 +1,45 @@
-import { Controller } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    Patch,
+    Delete,
+    Body,
+    Param
+} from '@nestjs/common';
+import { CreateUsersDTO } from './dto/createUsers.dto';
+import { UpdateUsersDTO } from './dto/updateUsers.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+    //injeção de dependência
+    constructor(private readonly usersService: UsersService) { }
 
-    constructor(private readonly usersService: UsersService) {}
+    //criar
+    @Post()
+    async createUser(@Body() req:CreateUsersDTO
+    ): Promise<string>{
+        return this.usersService.createUser(req);
+    }
+    //listar todos localhots:3000/users
+    @Get()
+    async findAll() {
+        return this.usersService.findAll();
+    }
+    //listar um localhots:3000/users/1
+    @Get(':id')
+    async findOne(@Param('id') id: string) {
+        return this.usersService.findOne(id);
+    }
+    //atualizar 
+    @Patch(':id')
+    async update(@Param('id') id: string, @Body() req: UpdateUsersDTO) {
+        return this.usersService.update(id, req);
+    }
+    //deletar
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        return `Deletando usuário ${id}`;
+    }
 }
