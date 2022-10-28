@@ -10,6 +10,7 @@ import {
 import { CreateUsersDTO } from './dto/createUsers.dto';
 import { UpdateUsersDTO } from './dto/updateUsers.dto';
 import { UsersService } from './users.service';
+import { users } from '@prisma/client';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +20,7 @@ export class UsersController {
     //criar
     @Post()
     async createUser(@Body() req:CreateUsersDTO
-    ): Promise<string>{
+    ): Promise<users>{
         return this.usersService.createUser(req);
     }
     //listar todos localhots:3000/users

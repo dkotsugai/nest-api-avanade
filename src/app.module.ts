@@ -7,6 +7,7 @@ import { OrdersModule } from './orders/orders.module';
 import { LogisticsModule } from './logistics/logistics.module';
 import { ProductsModule } from './products/products.module';
 
+
 @Module({
   imports: [AuthModule, UsersModule, OrdersModule, LogisticsModule, ProductsModule],
   controllers: [AppController],
