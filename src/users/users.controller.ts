@@ -33,14 +33,14 @@ export class UsersController {
     async findOne(@Param('id') id: string) {
         return this.usersService.findOne(id);
     }
-    //atualizar 
+    //atualizar localhots:3000/users/1
     @Patch(':id')
     async update(@Param('id') id: string, @Body() req: UpdateUsersDTO) {
         return this.usersService.update(id, req);
     }
-    //deletar
+    //deletar localhots:3000/users/1
     @Delete(':id')
     remove(@Param('id') id: string) {
-        return `Deletando usuário ${id}`;
+        return this.usersService.remove(id);
     }
 }
