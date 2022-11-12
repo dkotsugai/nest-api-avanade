@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { google } from 'googleapis';
-import { oauth2 } from 'googleapis/build/src/apis/oauth2';
 import * as nodemailer from 'nodemailer';
 
 @Injectable()

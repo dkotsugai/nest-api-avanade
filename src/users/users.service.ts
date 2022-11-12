@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { users } from '@prisma/client';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../prisma.service';
 import * as bcrypt from 'bcrypt';
 import { EmailService } from '../email/email.service';
 
@@ -94,6 +94,21 @@ export class UsersService {
     const user = await this.getUserById(id);
     //extraindo as novas informações para alterar o usuário
     const { name, email, password } = req;
+
+    //verificando se o email está disponível
+    if(email){
+      const checkEmail = await this.prisma.users.findMany({
+        where: {
+          AND: [{email: email}, {id: {not: Number(id) } } ]
+        },
+        });
+        if(checkEmail.length > 0){
+          throw new HttpException(
+            'Email já está sendo utilizado',
+             HttpStatus.BAD_REQUEST
+          );
+        }
+    }
 
     const updatedUser = await this.prisma.users.update({
       where: {

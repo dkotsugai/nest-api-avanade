@@ -11,7 +11,7 @@ import { CreateUsersDTO } from './dto/createUsers.dto';
 import { UpdateUsersDTO } from './dto/updateUsers.dto';
 import { UsersService } from './users.service';
 import { users } from '@prisma/client';
-import { EmailService } from 'src/email/email.service';
+
 
 @Controller('users')
 export class UsersController {

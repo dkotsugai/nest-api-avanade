@@ -6,6 +6,6 @@ export class AuthService {
         console.log('No service - login', login);
         console.log('No service - password', password);
         
-        return {login, password, msg:'Dados recebidos com sucesso'};
+        return {login, password, msg:'Usuário autenticado com sucesso'};
     }
 }
